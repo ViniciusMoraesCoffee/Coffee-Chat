@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ButtonCustomStyle" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@drawable/btn_draw</item>
+    </style>
+    <style name="EditTexBox" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/bg_edit_text_box</item>
+    </style>
+
+</resources>

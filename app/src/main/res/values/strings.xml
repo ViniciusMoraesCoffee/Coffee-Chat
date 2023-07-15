@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Coffee Chat</string>
+
+    <string name="btn_logar">Login</string>
+    <string name="btn_cadastrar">Sign Up</string>
+    <string name="username">User Name</string>
+    <string name="login">Login</string>
+    <string name="casastro">Create Account</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="confirmarsenha">Confirme sua Senha</string>
+    <string name="notconta">Não tenho Conta</string>
+    <string name="tenhoconta">Já tenho Conta</string>
+
+    <string name="nameuser">@username</string>
+</resources>
