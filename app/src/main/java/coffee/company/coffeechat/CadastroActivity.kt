@@ -27,7 +27,6 @@ class CadastroActivity : AppCompatActivity() {
     private lateinit var binding: ActCadastroBinding
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
-    private val resourceId = R.drawable.img_usuario_nulo
 
 
     //Falta Estudo

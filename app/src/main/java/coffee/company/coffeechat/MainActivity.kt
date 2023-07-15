@@ -9,17 +9,33 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coffee.company.coffeechat.Adapter.AdapterMensagem
+import coffee.company.coffeechat.databinding.ActCadastroBinding
+import coffee.company.coffeechat.databinding.ActMainBinding
 import coffee.company.coffeechat.model.Mensagem
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 private val listaMensagens: MutableList<Mensagem> = mutableListOf()
+@SuppressLint("StaticFieldLeak")
+private lateinit var binding: ActMainBinding
+private val auth = FirebaseAuth.getInstance()
+@SuppressLint("StaticFieldLeak")
+private val db = FirebaseFirestore.getInstance()
+private lateinit var userName:String
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.act_main)
+        binding = ActMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnReset.setOnClickListener {
+            auth.signOut()
+            finish()
+        }
+
 
         val rcv_mensagens = findViewById<RecyclerView>(R.id.rcv_mensagens)
         rcv_mensagens.layoutManager = LinearLayoutManager(this)
@@ -31,14 +47,31 @@ class MainActivity : AppCompatActivity() {
         val txt_mensagem = findViewById<EditText>(R.id.edit_mensagem)
 
 
+        val nomeUsuario = db.collection("Usuarios").document("CafeMaster")
+            .addSnapshotListener { documento, error ->
+                if (documento != null) {
+                    userName = documento.getString("nomeUsuario").toString()
+                }
+            }
+
         btn_enviar.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
+
+            val usuarioAtual = auth.currentUser
+            val nomeUsuario = db.collection("Usuarios").document("CafeMaster")
+                .addSnapshotListener { documento, error ->
+                    if (documento != null) {
+                        userName = documento.getString("nomeUsuario").toString()
+                    }
+                }
+
+
             val mensagem = txt_mensagem.text.toString()
-            if (mensagem == "" || mensagem == null) {
+
+            if (mensagem == "" || mensagem.isEmpty()) {
                 Toast.makeText(this, "Falta Infomações", Toast.LENGTH_SHORT).show()
             }
             else {
-                adicionar("Capivaria", mensagem, R.drawable.capivara)
+                adicionar(userName, mensagem, R.drawable.capivara)
             }
             txt_mensagem.text = null
             val lastFragmentPosition: Int = adapterMensagem.getItemCount() - 1
