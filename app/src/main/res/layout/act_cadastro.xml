@@ -48,7 +48,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/holo_green_light"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/img_cadastro_usuario"
+        app:layout_constraintBottom_toTopOf="@+id/img_bg_cadastro_usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -138,14 +138,15 @@
         app:layout_constraintVertical_chainStyle="packed">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/img_cadastro_usuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             android:src="@drawable/img_usuario_nulo" />
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/img_cadastro_usuario"
+        android:id="@+id/img_bg_cadastro_usuario"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="-4dp"

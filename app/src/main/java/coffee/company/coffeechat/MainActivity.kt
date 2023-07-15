@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coffee.company.coffeechat.Adapter.AdapterMensagem
 import coffee.company.coffeechat.model.Mensagem
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 
 private val listaMensagens: MutableList<Mensagem> = mutableListOf()
 
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
         btn_enviar.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
             val mensagem = txt_mensagem.text.toString()
             if (mensagem == "" || mensagem == null) {
                 Toast.makeText(this, "Falta Infomações", Toast.LENGTH_SHORT).show()
