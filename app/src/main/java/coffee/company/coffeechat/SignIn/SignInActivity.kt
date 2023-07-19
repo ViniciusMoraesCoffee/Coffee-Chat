@@ -1,18 +1,18 @@
-package coffee.company.coffeechat
+package coffee.company.coffeechat.SignIn
 
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import coffee.company.coffeechat.databinding.ActCadastroBinding
+import coffee.company.coffeechat.SignUp.SignUpActivity
+import coffee.company.coffeechat.MainActivity
 import coffee.company.coffeechat.databinding.ActLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
-class LoginActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActLoginBinding
     private val auth = FirebaseAuth.getInstance()
@@ -23,9 +23,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.txtLinkTocadastro.setOnClickListener {
-            val intent = Intent(this, CadastroActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.btnLogin.setOnClickListener {view ->
@@ -63,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun navegarTelaPrincipal(){
-        var intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

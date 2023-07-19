@@ -9,12 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coffee.company.coffeechat.Adapter.AdapterMensagem
-import coffee.company.coffeechat.databinding.ActCadastroBinding
 import coffee.company.coffeechat.databinding.ActMainBinding
 import coffee.company.coffeechat.model.Mensagem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 private val listaMensagens: MutableList<Mensagem> = mutableListOf()
 @SuppressLint("StaticFieldLeak")
@@ -43,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         val adapterMensagem = AdapterMensagem(this, listaMensagens)
         rcv_mensagens.adapter = adapterMensagem;
 
-        val btn_enviar = findViewById<Button>(R.id.btn_enviar)
+        val btn_enviar = findViewById<Button>(R.id.btn_send)
         val txt_mensagem = findViewById<EditText>(R.id.edit_mensagem)
 
 

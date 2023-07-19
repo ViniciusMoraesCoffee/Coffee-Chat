@@ -21,13 +21,13 @@
         android:padding="8dp"
         android:textColorHint="#686868"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_enviar"
+        app:layout_constraintEnd_toStartOf="@+id/btn_send"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_enviar"
+        android:id="@+id/btn_send"
         style="@style/ButtonCustomStyle"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
