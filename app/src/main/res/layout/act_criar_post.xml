@@ -20,19 +20,33 @@
 
     <EditText
         android:id="@+id/edt_mensagem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_login_edittxt"
         android:ems="10"
+        android:hint="Mensagem"
         android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="657dp" />
+        android:paddingStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btn_send"
+    <ImageButton
+        android:id="@+id/imageButton"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="317dp"
-        tools:layout_editor_absoluteY="670dp" />
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_btn_enviar"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_mensagem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/edt_mensagem"
+        app:layout_constraintTop_toTopOf="@+id/edt_mensagem"
+        app:srcCompat="@drawable/vec_send_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
