@@ -17,6 +17,10 @@ class CriarPostActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
 
+
+
+
+
 //        val user = hashMapOf(
 //            "first" to "Ada",
 //            "last" to "Lovelace",
