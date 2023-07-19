@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import coffee.company.coffeechat.CriarPost.CriarPostActivity
+import coffee.company.coffeechat.CreatePost.CreatePostActivity
 import coffee.company.coffeechat.PublicVar.userUiu
 import coffee.company.coffeechat.databinding.ActCadastroBinding
 import com.google.android.material.snackbar.Snackbar
@@ -34,7 +34,7 @@ class SignUpActivity : AppCompatActivity() {
             mudarTelaCriarPost()
         }
 
-        binding.btnCadastroSignup.setOnClickListener {view ->
+        binding.btnCadastroSignup.setOnClickListener {
 
             val name  = binding.edtCadastroUsername.text.toString()
             val email = binding.edtCadastroEmail.text.toString()
@@ -92,7 +92,7 @@ class SignUpActivity : AppCompatActivity() {
         snackbar.show()
     }
     fun mudarTelaCriarPost() {
-        val intent = Intent(this, CriarPostActivity::class.java)
+        val intent = Intent(this, CreatePostActivity::class.java)
         startActivity(intent)
     }
 }

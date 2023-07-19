@@ -4,8 +4,8 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import coffee.company.coffeechat.CreatePost.CreatePostActivity
 import coffee.company.coffeechat.SignUp.SignUpActivity
-import coffee.company.coffeechat.MainActivity
 import coffee.company.coffeechat.databinding.ActLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
@@ -21,6 +21,10 @@ class SignInActivity : AppCompatActivity() {
         binding = ActLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        if (auth.currentUser != null) {
+            navegarTelaPrincipal()
+        }
 
         binding.txtLinkTocadastro.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
@@ -62,17 +66,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun navegarTelaPrincipal(){
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val usuarioAtual = FirebaseAuth.getInstance().currentUser
-
-        if (usuarioAtual != null) {
-            navegarTelaPrincipal()
-        }
+        val mudarIntent = Intent(this, CreatePostActivity::class.java)
+        startActivity(mudarIntent)
     }
 }

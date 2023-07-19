@@ -1,14 +1,16 @@
-package coffee.company.coffeechat.CriarPost
+package coffee.company.coffeechat.CreatePost
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import coffee.company.coffeechat.databinding.ActCriarPostBinding
+import coffee.company.coffeechat.model.Post
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase as Firebase
 
-class CriarPostActivity : AppCompatActivity() {
+class CreatePostActivity : AppCompatActivity() {
 
     private lateinit var binding: ActCriarPostBinding
+    //private val listaPosts: MutableList<Post> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActCriarPostBinding.inflate(layoutInflater)
@@ -16,6 +18,27 @@ class CriarPostActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val db = Firebase.firestore
+
+//        listaPosts.add(Post(
+//            "Carlos",
+//            "bola pato qpowien aosdjw nqwdj nadn ajjnskjdakjdb jb j bsjdsajd"
+//        ))
+//
+//        val rcvPost = binding.rcvPosts
+//        rcvPost.layoutManager = LinearLayoutManager(this)
+//        rcvPost.adapter = AdapterPost(this, listaPosts)
+//        rcvPost.setHasFixedSize(true)
+
+//        binding.btnLogout.setOnClickListener {
+//            auth.signOut()
+//        }
+//
+//        binding.btnEnviar.setOnClickListener {
+//
+//
+//        }
+
+
 
 //        val user = hashMapOf(
 //            "first" to "Ada",
