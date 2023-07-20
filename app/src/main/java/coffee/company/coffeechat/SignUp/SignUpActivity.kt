@@ -8,11 +8,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import coffee.company.coffeechat.CreatePost.CreatePostActivity
-import coffee.company.coffeechat.PublicVar.userUiu
+import coffee.company.coffeechat.PublicVar.userId
+import coffee.company.coffeechat.SignIn.SignInActivity
 import coffee.company.coffeechat.databinding.ActCadastroBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
@@ -29,13 +31,18 @@ class SignUpActivity : AppCompatActivity() {
         auth = Firebase.auth
         setContentView(binding.root)
 
+        val db = Firebase.firestore
         val currentUser = auth.currentUser
         if (currentUser != null) {
             mudarTelaCriarPost()
         }
 
-        binding.btnCadastroSignup.setOnClickListener {
+        binding.txtCadastroLinkTologin.setOnClickListener {
+            val loginIntent = Intent(this, SignInActivity::class.java)
+            startActivity(loginIntent)
+        }
 
+        binding.btnCadastroSignup.setOnClickListener {
             val name  = binding.edtCadastroUsername.text.toString()
             val email = binding.edtCadastroEmail.text.toString()
             val password = binding.edtCadastroSenha.text.toString()
@@ -46,12 +53,8 @@ class SignUpActivity : AppCompatActivity() {
                 password.isEmpty()){
 
                 snackbar("Preencha todos os Campos!", Snackbar.LENGTH_SHORT)
-
-
-
             }
             else if (password.length<7) {
-
                 snackbar("A Senha dever 8 ou mais Caracteres", Snackbar.LENGTH_SHORT)
             }
             else {
@@ -61,9 +64,22 @@ class SignUpActivity : AppCompatActivity() {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("StatusCONTA", "signInWithCustomToken:success")
                             val user = auth.currentUser
-                            userUiu = user?.uid
+                            userId = user?.uid
                             resetarEditsTexts()
                             mudarTelaCriarPost()
+
+                            val userHashMap = hashMapOf(
+                                "name" to name,
+                            )
+
+                            db.collection("users").document(userId.toString())
+                                .set(userHashMap)
+                                .addOnSuccessListener { documentReference ->
+                                    Log.d("STATUS", "DocumentSnapshot added with ID: ${documentReference}")
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w("STATUS", "Error adding document", e)
+                                }
 
                         } else {
                             // If sign in fails, display a message to the user.
