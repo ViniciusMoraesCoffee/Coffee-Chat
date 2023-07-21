@@ -1,4 +1,4 @@
-package coffee.company.coffeechat.Adapter
+package coffee.company.coffeechat.adapter
 
 
 import android.content.Context
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coffee.company.coffeechat.R
-import coffee.company.coffeechat.model.Post
+import coffee.company.coffeechat.models.Post
 
 
 class AdapterPost(
