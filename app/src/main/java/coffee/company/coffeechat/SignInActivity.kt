@@ -4,25 +4,24 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import coffee.company.coffeechat.databinding.ActLoginBinding
+import android.view.View
+import coffee.company.coffeechat.databinding.ActSignInBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 
 class SignInActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActLoginBinding
+    private lateinit var binding: ActSignInBinding
     private val auth = FirebaseAuth.getInstance()
 
-    ////TEM QUE REFORMA ESSA BAGAÇA
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding = ActSignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (auth.currentUser != null) {
-            navegarTelaPrincipal()
+            navigateToScreenMain()
         }
 
         binding.txtLinkTocadastro.setOnClickListener {
@@ -32,40 +31,39 @@ class SignInActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {view ->
             val email = binding.edtLoginEmail.text.toString()
-            val senha = binding.edtLoginSenha.text.toString()
+            val password = binding.edtLoginSenha.text.toString()
 
-            if (email.isEmpty() || senha.isEmpty()){
-                val snackbar = Snackbar.make(view, "Preencha todos os Campos!", Snackbar.LENGTH_SHORT)
-                snackbar.setBackgroundTint(Color.RED)
-                snackbar.show()
+            if (email.isEmpty() || password.isEmpty()){
+                newSnackbar(view,"Preencha todos os Campos!")
             }
             else{
                 binding.edtLoginEmail.setText("")
                 binding.edtLoginSenha.setText("")
-                auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { autenticacao ->
-                    if (autenticacao.isSuccessful) {
-                        navegarTelaPrincipal()
+
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { altentication ->
+                    if (altentication.isSuccessful) {
+                        navigateToScreenMain()
                     }
                 }.addOnFailureListener {exception ->
-                    val mensagemErro = when(exception) {
+                    val messageError = when(exception) {
                         is FirebaseAuthInvalidCredentialsException -> "Email Inválido!"
                         is FirebaseNetworkException -> "Falha na conexão com a internet!"
                         else -> "Erro ao logar usuário!"
                     }
-                    val snackbar = Snackbar.make(view, mensagemErro, Snackbar.LENGTH_SHORT)
-                    snackbar.setBackgroundTint(Color.RED)
-                    snackbar.show()
-                    binding.edtLoginEmail.setText("")
-                    binding.edtLoginSenha.setText("")
+                    newSnackbar(view,messageError)
                 }
             }
         }
-
-
     }
 
-    private fun navegarTelaPrincipal(){
-        val mudarIntent = Intent(this, PageHomeActivity::class.java)
-        startActivity(mudarIntent)
+    private fun navigateToScreenMain(){
+        val changeIntent = Intent(this, PageHomeActivity::class.java)
+        startActivity(changeIntent)
+    }
+
+    private fun newSnackbar(view:View, textMsg:String) {
+        val snackbar = Snackbar.make(view, textMsg, Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.RED)
+        snackbar.show()
     }
 }

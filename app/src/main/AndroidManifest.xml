@@ -19,6 +19,9 @@
         android:theme="@style/Theme.CoffeeChat"
         tools:targetApi="31">
         <activity
+            android:name=".CreatorPostActivity"
+            android:exported="false" />
+        <activity
             android:name=".PageHomeActivity"
             android:exported="false" />
         <activity

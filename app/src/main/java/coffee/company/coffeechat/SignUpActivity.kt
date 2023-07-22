@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import coffee.company.coffeechat.databinding.ActCadastroBinding
+import coffee.company.coffeechat.databinding.ActSignUpBinding
 import coffee.company.coffeechat.models.ModelUser
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -18,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActCadastroBinding
+    private lateinit var binding: ActSignUpBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var userId: String
 
@@ -26,7 +26,7 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActCadastroBinding.inflate(layoutInflater)
+        binding = ActSignUpBinding.inflate(layoutInflater)
         auth = Firebase.auth
         setContentView(binding.root)
 

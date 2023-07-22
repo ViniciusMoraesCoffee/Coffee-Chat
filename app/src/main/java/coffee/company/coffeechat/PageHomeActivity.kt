@@ -35,6 +35,9 @@ class PageHomeActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.btnCriar.setOnClickListener {
+            startActivity(Intent(this, CreatorPostActivity::class.java))
+        }
 
         val colRefMessages = db.collection("messages")
         colRefMessages.addSnapshotListener { snapshot, e ->
