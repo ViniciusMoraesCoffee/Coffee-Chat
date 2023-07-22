@@ -1,4 +1,4 @@
-package coffee.company.coffeechat.signUp
+package coffee.company.coffeechat
 
 
 import android.content.Intent
@@ -7,11 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import coffee.company.coffeechat.createPost.CreatePostActivity
-import coffee.company.coffeechat.publicVar.userId
 import coffee.company.coffeechat.databinding.ActCadastroBinding
 import coffee.company.coffeechat.models.ModelUser
-import coffee.company.coffeechat.SignIn.SignInActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -23,6 +20,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActCadastroBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var userId: String
 
 
 
@@ -71,9 +69,9 @@ class SignUpActivity : AppCompatActivity() {
                                 userId = user.uid
                             }
 
-                            val modelUser = ModelUser(userId!!, name, name, null)
+                            val modelUser = ModelUser(userId, name, name, null)
 
-                            db.collection("users").document(userId!!)
+                            db.collection("users").document(userId)
                                 .set(modelUser)
                                 .addOnSuccessListener { documentReference ->
                                     Log.d("STATUS_SET_DADOS", "DocumentSnapshot added with ID: $documentReference")
@@ -109,7 +107,7 @@ class SignUpActivity : AppCompatActivity() {
     }
     //ARRUMA ESSA FUNÇÂO DEIXA ELA MELHOR OU SE TU FOR BRABO FAZ UM PUBLIC CLASS PRA GERAL DELA
     private fun changeTelaCriarPost() {
-        val intent = Intent(this, CreatePostActivity::class.java)
+        val intent = Intent(this, PageHomeActivity::class.java)
         startActivity(intent)
     }
 }

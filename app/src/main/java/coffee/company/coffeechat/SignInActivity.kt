@@ -1,11 +1,9 @@
-package coffee.company.coffeechat.SignIn
+package coffee.company.coffeechat
 
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import coffee.company.coffeechat.createPost.CreatePostActivity
-import coffee.company.coffeechat.signUp.SignUpActivity
 import coffee.company.coffeechat.databinding.ActLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
@@ -67,7 +65,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun navegarTelaPrincipal(){
-        val mudarIntent = Intent(this, CreatePostActivity::class.java)
+        val mudarIntent = Intent(this, PageHomeActivity::class.java)
         startActivity(mudarIntent)
     }
 }

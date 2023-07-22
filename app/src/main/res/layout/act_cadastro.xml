@@ -5,7 +5,7 @@
     android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signUp.SignUpActivity">
+    tools:context=".SignUpActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
