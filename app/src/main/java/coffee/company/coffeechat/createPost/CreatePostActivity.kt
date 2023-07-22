@@ -19,8 +19,8 @@ class CreatePostActivity : AppCompatActivity() {
     private val listaPosts: MutableList<Post> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActCriarPostBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding = ActCriarPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val auth = FirebaseAuth.getInstance()
