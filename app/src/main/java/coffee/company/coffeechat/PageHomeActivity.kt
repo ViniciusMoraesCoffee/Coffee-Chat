@@ -51,7 +51,6 @@ class PageHomeActivity : AppCompatActivity() {
                 for (document in (snapshot.documents)) {
                     listModelPosts.add(
                         ModelPost(
-                            document.getString("idMessage").toString(),
                             document.getString("idAuthor").toString(),
                             document.getString("nameAuthor").toString(),
                             document.getString("nicknameAuthor").toString(),
