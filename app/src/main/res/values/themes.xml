@@ -7,7 +7,7 @@
 
     </style>
     <style name="EditTextArea">
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/preto_default</item>
     </style>
 

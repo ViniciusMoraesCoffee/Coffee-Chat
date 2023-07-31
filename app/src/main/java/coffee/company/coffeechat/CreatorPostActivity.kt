@@ -42,6 +42,17 @@ class CreatorPostActivity : AppCompatActivity() {
         if (auth.currentUser == null) {
             startActivity(Intent(this, SignInActivity::class.java))
         }
+        else {
+            val idUser = auth.currentUser?.uid.toString()
+            db.collection("users").document(idUser).get()
+                .addOnSuccessListener {document ->
+                    val nickname = document.getString("nickname")
+                    val name = document.getString("name")
+
+                    binding.txtNickname.text = nickname
+                    binding.txtNameuser.text = name
+                }
+        }
 
         showKeyboard()
 
