@@ -6,11 +6,11 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresApi
 import coffee.company.coffeechat.databinding.ActCreatorPostBinding
 import coffee.company.coffeechat.models.ModelPost
-import coffee.company.coffeechat.myvariables.UserData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
@@ -19,6 +19,12 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+class UserData {
+    lateinit var userId: String
+    lateinit var name: String
+    lateinit var nickname: String
+    lateinit var messageId: String
+}
 class CreatorPostActivity : AppCompatActivity() {
     private lateinit var binding: ActCreatorPostBinding
     @RequiresApi(Build.VERSION_CODES.O)
@@ -45,6 +51,7 @@ class CreatorPostActivity : AppCompatActivity() {
             val dateCurrentFormatted = format.format(currentDate)
             val text = binding.edtMessagePost.text.toString()
             val userData = UserData()
+            Log.i("Datos", userData.toString())
             userData.userId = auth.currentUser?.uid.toString()
             colRefUsers.document(userData.userId).get()
                 .addOnSuccessListener { document ->
@@ -84,3 +91,5 @@ class CreatorPostActivity : AppCompatActivity() {
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 }
+
+

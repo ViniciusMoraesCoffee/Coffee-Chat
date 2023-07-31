@@ -3,5 +3,12 @@
     <style name="Base.Theme.CoffeeChat" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:background">@color/preto_default</item>
+
+
+    </style>
+    <style name="EditTextArea">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">#D8D8D8</item>
     </style>
 </resources>

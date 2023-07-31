@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="azulclaro">#5CA6F5</color>
+    <color name="preto_default">#2C2C2C</color>
+    <color name="branco_default">#FDFDFD</color>
+    <color name="verde_esmeralda">#00CBA3</color>
+    <color name="marrom_escuro">#85541A</color>
 </resources>

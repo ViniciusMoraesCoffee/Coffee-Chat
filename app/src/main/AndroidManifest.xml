@@ -32,6 +32,9 @@
             android:exported="false" />
         <activity
             android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

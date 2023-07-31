@@ -3,7 +3,12 @@
     <style name="Base.Theme.CoffeeChat" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:background">#C2FFFFFF</item>
+        <item name="android:background">@color/branco_default</item>
+
+    </style>
+    <style name="EditTextArea">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/preto_default</item>
     </style>
 
     <style name="Theme.CoffeeChat" parent="Base.Theme.CoffeeChat" />
