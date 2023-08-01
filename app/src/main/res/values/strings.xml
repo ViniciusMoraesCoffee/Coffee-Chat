@@ -13,4 +13,6 @@
     <string name="tenhoconta">Já tenho Conta</string>
 
     <string name="nameuser">@username</string>
+    <string name="enviar">Enviar</string>
+    <string name="hintTextBoxCriarPost">O que esta acontecendo?</string>
 </resources>

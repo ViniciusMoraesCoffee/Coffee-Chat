@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresApi
@@ -56,6 +58,26 @@ class CreatorPostActivity : AppCompatActivity() {
 
         showKeyboard()
 
+        val maxCharacters = 392
+        binding.edtMessagePost.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun afterTextChanged(editable: Editable?) {
+                // Aqui, você pode obter o número de caracteres atuais e atualizar a exibição, se necessário.
+                val currentLength = editable?.length ?: 0
+                val remainingCharacters = maxCharacters - currentLength
+
+                // Exemplo: Atualiza um TextView para mostrar o número de caracteres restantes.
+                val txtAmountChars = binding.txtAmountChars
+                txtAmountChars.text = "$remainingCharacters"
+            }
+        })
+
         binding.btnEnviar.setOnClickListener {
             val currentDate = Date()
             val format = SimpleDateFormat("HH:mm dd/MM/yy", Locale.getDefault())
@@ -92,6 +114,7 @@ class CreatorPostActivity : AppCompatActivity() {
                 }
 
         }
+
     }
 
 //TEM QUE ARRUMAR ESSA PORRA TE FEIO

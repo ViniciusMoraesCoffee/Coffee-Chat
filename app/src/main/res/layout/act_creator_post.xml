@@ -23,7 +23,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/edtMessagePost"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/btnClose" />
 
         <TextView
             android:id="@+id/txtNameuser"
@@ -46,20 +46,57 @@
             android:background="@android:color/transparent"
             android:gravity="start|top"
             android:inputType="textMultiLine"
+            android:textSize="18sp"
             android:maxLines="10"
             android:minLines="5"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNickname" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNickname"
+            android:hint="@string/hintTextBoxCriarPost" />
 
         <Button
             android:id="@+id/btnEnviar"
+            style="@style/textMediunBold"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/vec_btn_enviar"
+            android:drawableStart="@drawable/vec_ic_caneca"
+            android:drawablePadding="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="16dp"
+            android:text="@string/enviar"
+            app:layout_constraintBottom_toBottomOf="@+id/btnClose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnClose"
+            app:layout_constraintTop_toTopOf="@+id/btnClose" />
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/branco_default"
+            android:contentDescription="Sair do Activity"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/btnEnviar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/vec_close_24" />
+
+        <TextView
+            android:id="@+id/txtAmountChars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Enviar"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
