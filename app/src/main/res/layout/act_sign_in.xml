@@ -12,14 +12,15 @@
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_login_edittxt"
+        android:paddingStart="12dp"
         android:ems="10"
+        android:background="@drawable/bg_login_edittxt"
         android:inputType="textEmailAddress"
-        android:paddingLeft="12dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="RtlSymmetry" />
 
     <EditText
         android:id="@+id/edt_login_senha"
@@ -40,6 +41,7 @@
         android:layout_height="wrap_content"
         android:text="@string/email"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/marrom_escuro"
         app:layout_constraintBottom_toTopOf="@+id/edt_login_email"
         app:layout_constraintStart_toStartOf="@+id/edt_login_email"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,6 +54,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/senha"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/marrom_escuro"
         app:layout_constraintBottom_toTopOf="@+id/edt_login_senha"
         app:layout_constraintStart_toStartOf="@+id/edt_login_senha"
         app:layout_constraintTop_toBottomOf="@+id/edt_login_email" />
@@ -62,7 +65,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/holo_green_light"
+        android:textColor="@color/verde_esmeralda"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,13 +73,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_link_tocadastro"
+        android:id="@+id/txt_link_to_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/notconta"
-        android:textColor="@android:color/holo_green_light"
+        android:text="@string/not_account"
         android:textStyle="bold"
+        android:textColor="@color/marrom_escuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
@@ -88,11 +91,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/btn_logar"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_btn_login"
-        app:layout_constraintBottom_toTopOf="@+id/txt_link_tocadastro"
+        android:textColor="@color/branco_default"
+        android:background="@drawable/bg_btn_login_ripple"
+        app:layout_constraintBottom_toTopOf="@+id/txt_link_to_register"
         app:layout_constraintEnd_toEndOf="@+id/edt_login_senha"
         app:layout_constraintStart_toStartOf="@+id/edt_login_senha"
         app:layout_constraintTop_toBottomOf="@+id/edt_login_senha" />

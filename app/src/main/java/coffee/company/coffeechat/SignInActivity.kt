@@ -24,7 +24,7 @@ class SignInActivity : AppCompatActivity() {
             navigateToScreenMain()
         }
 
-        binding.txtLinkTocadastro.setOnClickListener {
+        binding.txtLinkToRegister.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }

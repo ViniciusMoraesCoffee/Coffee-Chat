@@ -10,6 +10,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import coffee.company.coffeechat.databinding.ActCreatorPostBinding
 import coffee.company.coffeechat.models.ModelPost
@@ -78,26 +79,31 @@ class CreatorPostActivity : AppCompatActivity() {
             }
         })
 
+        binding.btnClose.setOnClickListener {
+            finish()
+        }
+
         binding.btnEnviar.setOnClickListener {
             val text = binding.edtMessagePost.text.toString()
 
-            val currentDate = LocalDate.now()
-            val outputFormatter = DateTimeFormatter.ofPattern("d 'de' MMM 'de' yyyy", Locale("pt", "BR"))
-            val formattedDate = currentDate.format(outputFormatter)
+            if (text.isNotEmpty()){
+                val currentDate = LocalDate.now()
+                val outputFormatter =
+                    DateTimeFormatter.ofPattern("d 'de' MMM 'de' yyyy", Locale("pt", "BR"))
+                val formattedDate = currentDate.format(outputFormatter)
 
 
-            val userData = UserData()
+                val userData = UserData()
 
-            Log.i("Datos", userData.toString())
-            userData.userId = auth.currentUser?.uid.toString()
-            colRefUsers.document(userData.userId).get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        userData.name = document.getString("name").toString()
-                        userData.nickname = document.getString("nickname").toString()
-                    }
-                }.addOnCompleteListener {
-                    if (text.isNotEmpty()) {
+                Log.i("Datos", userData.toString())
+                userData.userId = auth.currentUser?.uid.toString()
+                colRefUsers.document(userData.userId).get()
+                    .addOnSuccessListener { document ->
+                        if (document != null) {
+                            userData.name = document.getString("name").toString()
+                            userData.nickname = document.getString("nickname").toString()
+                        }
+                    }.addOnCompleteListener {
                         colRefMessages.add(
                             ModelPost(
                                 userData.userId,
@@ -109,14 +115,18 @@ class CreatorPostActivity : AppCompatActivity() {
                         ).addOnSuccessListener { document ->
                             userData.messageId = document.id
                         }.addOnSuccessListener {
-                            colRefUsers.document(userData.userId).update("messagesId", FieldValue.arrayUnion(userData.messageId))
+                            colRefUsers.document(userData.userId)
+                                .update("messagesId", FieldValue.arrayUnion(userData.messageId))
+                        }.addOnCompleteListener {
+                            finish()
                         }
-                            .addOnCompleteListener {
-                                finish()
-                            }
-                    }
-                }
 
+                    }
+            }
+            else {
+                val toast = Toast.makeText(this, "Mensagem Vazia", Toast.LENGTH_SHORT)
+                toast.show()
+            }
         }
 
     }
