@@ -17,8 +17,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.text.SimpleDateFormat
-import java.util.Date
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class UserData {
@@ -79,11 +79,15 @@ class CreatorPostActivity : AppCompatActivity() {
         })
 
         binding.btnEnviar.setOnClickListener {
-            val currentDate = Date()
-            val format = SimpleDateFormat("HH:mm dd/MM/yy", Locale.getDefault())
-            val dateCurrentFormatted = format.format(currentDate)
             val text = binding.edtMessagePost.text.toString()
+
+            val currentDate = LocalDate.now()
+            val outputFormatter = DateTimeFormatter.ofPattern("d 'de' MMM 'de' yyyy", Locale("pt", "BR"))
+            val formattedDate = currentDate.format(outputFormatter)
+
+
             val userData = UserData()
+
             Log.i("Datos", userData.toString())
             userData.userId = auth.currentUser?.uid.toString()
             colRefUsers.document(userData.userId).get()
@@ -100,7 +104,7 @@ class CreatorPostActivity : AppCompatActivity() {
                                 userData.name,
                                 userData.nickname,
                                 text,
-                                dateCurrentFormatted
+                                formattedDate
                             )
                         ).addOnSuccessListener { document ->
                             userData.messageId = document.id

@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg_mensagem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:padding="16dp">
-
+    android:padding="16dp"
+    android:background="@drawable/bg_mensagem">
 
     <TextView
         android:id="@+id/txtMensagemPost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#4D606B"
-        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic"
-        android:textColor="#DDDDDD"
+        android:text="@string/lorem_ipsum"
+        style="@style/textMensagemPost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNickname" />
@@ -26,8 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ApelidoName"
-        android:textColor="#DDDDDD"
-        android:backgroundTint="#4D606B"
+        android:textColor="@color/verde_esmeralda"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,9 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:backgroundTint="#4D606B"
         android:text="Name"
-        android:textColor="#DDDDDD"
+        android:textColor="@color/marrom_escuro"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/txtNickname"
         app:layout_constraintStart_toEndOf="@+id/txtNickname"
@@ -48,9 +42,10 @@
         android:id="@+id/txtData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#4D606B"
-        android:text="06/08/2022"
-        android:textColor="#DDDDDD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="16dp"
+        android:text="06 ago"
+        android:textSize="12sp"
+        android:textColor="#979797"
+        app:layout_constraintBottom_toBottomOf="@+id/txtName"
+        app:layout_constraintStart_toEndOf="@+id/txtName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,12 @@
 package coffee.company.coffeechat
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import coffee.company.coffeechat.adapters.AdapterPost
 import coffee.company.coffeechat.databinding.ActPageHomeBinding
@@ -18,6 +21,9 @@ class PageHomeActivity : AppCompatActivity() {
     private var listModelPosts: MutableList<ModelPost> = mutableListOf()
     private var listModelPostsTrue: MutableList<ModelPost> = mutableListOf()
 
+    private val tag = "PAGE_HOME"
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActPageHomeBinding.inflate(layoutInflater)
@@ -38,16 +44,40 @@ class PageHomeActivity : AppCompatActivity() {
             startActivity(Intent(this, CreatorPostActivity::class.java))
         }
 
+        binding.rcvMessages.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE, MotionEvent.ACTION_SCROLL -> {
+                    binding.btnCriar.animate()
+                        .alpha(0f)
+                        .setDuration(300)
+                        .withEndAction {
+                            binding.btnCriar.visibility = View.GONE
+                        }
+                        .start()
+                }
+                MotionEvent.ACTION_UP -> {
+                    binding.btnCriar.animate()
+                        .alpha(1f)
+                        .setDuration(300)
+                        .withStartAction {
+                            binding.btnCriar.visibility = View.VISIBLE
+                        }
+                        .start()
+                }
+            }
+            false
+        }
+
         val colRefMessages = db.collection("messages")
         colRefMessages.addSnapshotListener { snapshot, e ->
             if (e != null) {
                 //TRATAMENTO DE ERROS (N SEI COMO LIDAR)
                 //ESTUDA QUE PORRA E ESSES LOGO DIFERENCIADO I D W
-                Log.w("STATUS_COL_MESSAGES", "Listen failed.", e)
+                Log.w(tag, "Listen failed.", e)
             }
 
             if (snapshot != null) {
-                Log.d("STATUS_COL_MESSAGES", "Current data: ${snapshot.documents}")
+                Log.d(tag, "Current data: ${snapshot.documents}")
                 for (document in (snapshot.documents)) {
                     listModelPosts.add(
                         ModelPost(
@@ -63,7 +93,7 @@ class PageHomeActivity : AppCompatActivity() {
                 if (listModelPostsTrue.isNotEmpty()) updateRecycleView()
             }
             else {
-                Log.d("STATUS_COL_MESSAGES", "Current data: null")
+                Log.d(tag, "Current data: null")
             }
         }
     }

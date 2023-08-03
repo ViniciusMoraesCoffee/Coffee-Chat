@@ -11,5 +11,9 @@
         <item name="android:textColor">@color/preto_default</item>
     </style>
 
+    <style name="textMensagemPost">
+        <item name="android:textColor">@color/preto_default</item>
+    </style>
+
     <style name="Theme.CoffeeChat" parent="Base.Theme.CoffeeChat" />
 </resources>

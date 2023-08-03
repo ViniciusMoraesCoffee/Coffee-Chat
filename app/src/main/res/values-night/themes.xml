@@ -11,4 +11,8 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#D8D8D8</item>
     </style>
+
+    <style name="textMensagemPost">
+        <item name="android:textColor">@color/branco_default</item>
+    </style>
 </resources>
