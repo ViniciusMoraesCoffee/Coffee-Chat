@@ -2,11 +2,13 @@ package coffee.company.coffeechat
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import coffee.company.coffeechat.adapters.AdapterPost
 import coffee.company.coffeechat.databinding.ActPageHomeBinding
@@ -14,6 +16,10 @@ import coffee.company.coffeechat.models.ModelPost
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 
 class PageHomeActivity : AppCompatActivity() {
@@ -23,6 +29,7 @@ class PageHomeActivity : AppCompatActivity() {
 
     private val tag = "PAGE_HOME"
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +97,8 @@ class PageHomeActivity : AppCompatActivity() {
                     )
                 }
                 listModelPostsTrue = listModelPosts.toSet().toList().toMutableList()
+                val formatter = DateTimeFormatter.ofPattern("d 'de' MMM 'de' yyyy", Locale("pt", "BR"))
+                listModelPostsTrue.sortedBy { it.dataPost }.reversed()
                 if (listModelPostsTrue.isNotEmpty()) updateRecycleView()
             }
             else {
@@ -98,6 +107,7 @@ class PageHomeActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun updateRecycleView() {
         val rcvMessages = binding.rcvMessages
         rcvMessages.layoutManager = LinearLayoutManager(this)

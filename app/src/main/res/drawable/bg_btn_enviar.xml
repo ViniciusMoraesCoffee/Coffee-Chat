@@ -3,7 +3,6 @@
     <item>
         <shape android:shape="oval">
             <solid android:color="@color/verde_esmeralda" />
-            <corners android:radius="150dp" />
             <stroke
                 android:width="14dp"
                 android:color="@color/verde_esmeralda" />

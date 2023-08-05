@@ -16,7 +16,13 @@ class LoadingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_loading)
 
-//        val auth = FirebaseAuth.getInstance()
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser == null) {
+            startActivity(Intent(this, SignInActivity::class.java))
+        }
+        else {
+            startActivity(Intent(this, PageHomeActivity::class.java))
+        }
 //        val db = Firebase.firestore
 //        val colRefUsers = db.collection("users")
 //        val userData = UserData()
@@ -39,7 +45,6 @@ class LoadingActivity : AppCompatActivity() {
 //        else {
 //            startActivity(Intent(this, SignUpActivity::class.java))
 //        }
-        startActivity(Intent(this, SignInActivity::class.java))
     }
 }
 
